@@ -1,0 +1,22 @@
+en:
+  live_validation:
+    valid: Thankyou!
+    presence:
+      failure: Can't be empty!
+    format:
+      failure: Not valid!
+    numericality:
+      not_a_number: Must be a number!
+      not_an_integer: Must be an integer!
+      wrong_number: Must be {{is}}!
+      too_low: Must not be less than {{minimum}}
+      too_high: Must not be more than {{maximum}}
+    length: 
+      wrong_length: Must be {is} characters long!
+      too_short: Must not be less than {{minimum}} characters long!
+      too_long: Must not be more than {{maximum}} characters long!
+    acceptance:
+      failure: Must be accepted!
+    confirmation:
+      failure: Does not match!
+

@@ -1,0 +1,22 @@
+pt:
+  live_validation:
+    valid: valido!
+    presence:
+      failure: não pode estar vacio
+    format:
+      failure: não é valido
+    numericality:
+      not_a_number: deve ser um número
+      not_an_integer: deve ser um inteiro
+      wrong_number: deve ser {{is}}
+      too_low: não deve ser menor de {{minimum}}
+      too_high: não deve ser maior de {{maximum}}
+    length: 
+      wrong_length: deve ter {is} caracteres de comprimento
+      too_short: deve ter um comprimento de no minimo {{minimum}} caracteres
+      too_long: deve ter um comprimento de no maximo {{maximum}} caracteres
+    acceptance:
+      failure: deve ser aceito
+    confirmation:
+      failure: deve ser igual
+

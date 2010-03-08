@@ -19,6 +19,12 @@ This plugin generates the needed Javascript code to run client-side the validati
     <%= javascript_include_tag 'prototype', 'live_validation' %>
     <%= stylesheet_link_tag 'live_validation' %>
 
+2a. Add internationalization configuration for plugin in config/enviroment.rb of your application
+
+  # LiveValidation Config
+  config.i18n.load_path += Dir[Rails.root.join('vendor', 'plugins', '*', 'config', 'locales', '*.{rb,yml}')]
+
+
 3. There is no step 3 ;) You only need to add validations to your models, and crete your forms using the Rails form helpers, something like this:
 
     <% form_for(:resource, :url => resources_path) do |f| %>
