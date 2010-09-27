@@ -1,16 +1,81 @@
-LiveValidation is a plugin which allows automatic integration of your Rails application with Javascript library [LiveValidation](http://www.livevalidation.com/). This library implements client-side form validation and you can see a demo in its site.
+## NOTE
 
-## Important note
+This has been forked from porras's original plugin, which is no longer supported, and has had changes merged in from various other forks:
 
-This plugin is no longer mantained, and may not work with the newest versions of Rails. I suggest you to use one of the more updated [forks](http://github.com/porras/livevalidation/network).
+jbernab/livevalidation
 
-## Author
 
-[Sergio Gil](http://twitter.com/porras)
+shalott
 
-## License
+## Basics
 
-LiveValidation is licensed under the terms of the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+LiveValidation is a plugin which allows automatic integration of your Rails application with Javascript library LiveValidation[http://www.livevalidation.com/]. This library implements client-side form validation and you can see a demo in its site.
+
+This plugin generates the needed Javascript code to run client-side the validations you have already defined in your models (with Rails validation helpers) to run them server-side, and redefines form helpers to automaticaly include that Javascript code. You have not to write your validations twice so you can keep DRY. And if you have 1) used Rails validation helpers to validate your models, and 2) used Rails form helpers to create your forms, you only have to install this plugin to get your forms validated both server and client-side!
+
+[Spanish[http://www.lacoctelera.com/porras/post/2007/10/12/plugin-livevalidation-rails]]
+
+== A little HOWTO
+
+1. Install the plugin:
+
+    $ script/plugin install git://github.com/porras/livevalidation.git
+
+2. Install Javascript and CSS files under public/, with this Rake task:
+
+    $ rake livevalidation:install
+
+   Remember including them in your headers, including Prototype too (as LiveValidation depends on it), this way (for example):
+
+    <%= javascript_include_tag 'prototype', 'live_validation' %>
+    <%= stylesheet_link_tag 'live_validation' %>
+
+2a. Add internationalization configuration for plugin in config/enviroment.rb of your application
+
+  # LiveValidation Config
+  config.i18n.load_path += Dir[Rails.root.join('vendor', 'plugins', '*', 'config', 'locales', '*.{rb,yml}')]
+
+
+3. There is no step 3 ;) You only need to add validations to your models, and crete your forms using the Rails form helpers, something like this:
+
+    <% form_for(:resource, :url => resources_path) do |f| %>
+    <%= f.text_field :name %>
+    [etc ...]
+    <% end %>
+
+You can disable live validation for a given field using <tt>:live => false</tt>:
+
+    <%= f.text_field :name, :live => false %>
+
+You can also reverse this schema so the default is <b>no validation</b>, including this in your <tt>config/environment.rb</tt>:
+
+    ActionView::live_validations = false
+		
+and enabling it only for some fields:
+
+    <%= f.text_field :name, :live => true %>
+
+== Supported validations
+
+* <tt>validates_presence_of</tt>
+* <tt>validates_numericallity_of</tt>
+* <tt>validates_format_of</tt>
+* <tt>validates_length_of</tt>
+* <tt>validates_confirmation_of</tt>
+
+== Supported form helpers
+
+* <tt>text_field</tt>
+* <tt>text_area</tt>
+* <tt>password_field</tt>
+
+== Author
+
+Plugin written by {Sergio Gil}[http://www.lacoctelera.com/porras]. Mail me to <tt>sgilperez at gmail.com</tt> for bug reports, feature requests or any comment.
+
+== License
+
+LiveValidation is licensed under the terms of the {MIT License}[http://www.opensource.org/licenses/mit-license.php].
 
 Copyright (c) 2007 Sergio Gil
 

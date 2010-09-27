@@ -1,7 +1,7 @@
 require 'test/unit'
 
 require 'rubygems'
-gem 'rails', '<= 2.3.0' #tests aren't passing in 2.3.2 (but it seems to work)
+gem 'rails'#, '<= 2.3.0' #tests aren't passing in 2.3.2 (but it seems to work)
 
 require 'active_record'
 require 'action_controller'
